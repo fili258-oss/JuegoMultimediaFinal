@@ -1,0 +1,218 @@
+[
+    {
+        "name": "track-road-wide-corner-large",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-corner-small",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-straight",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-striped-wide-straight-bump-up",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-wide-corner-large",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-wide-corner-small",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-straight.001",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-corner-large.001",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-straight.002",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-corner-large.002",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-straight.003",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-corner-large.003",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-corner-large.004",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-corner-large.005",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "track-road-wide-corner-large.006",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "plane",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "chimney",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "chimney_detailed",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "hangar_roundb",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "hangar_roundglass",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "hangar_smallb",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "pipe_ringhigh",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "pipe_ringhighend",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "rocket_basea",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "rocket_baseb",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "rocket_sidesa",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "rocket_sidesb",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "structure",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "structure_closed",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "structure_detailed",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "structure_diagonal",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "hangar_roundb.001",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "hangar_roundb.002",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "hangar_roundb.003",
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    {
+        "name": "cone1",
+        "x": 9.191,
+        "y": 5.476,
+        "z": 2.122
+    },
+    {
+        "name": "cilinder2",
+        "x": 13.698,
+        "y": -11.677,
+        "z": 2.277
+    }
+]
