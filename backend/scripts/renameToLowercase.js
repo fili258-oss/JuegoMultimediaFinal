@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// ✅ Ruta absoluta donde están los modelos (ajustada a tu entorno)
+// ✅ Ruta absoluta donde están los modelos
 const directory = 'D:/UCC/React/PortafolioUCC/Project/game-project/public/models/toycar';
 
 fs.readdir(directory, (err, files) => {

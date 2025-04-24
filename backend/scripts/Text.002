@@ -3,7 +3,7 @@ import os
 import json
 from mathutils import Vector
 
-export_path = r"D:/UCC/React/PortafolioUCC/Project/game-project/public/models/toycar1"
+export_path = r"D:/UCC/React/PortafolioUCC/Project/game-project/public/models/toycar2"
 json_path = os.path.join(export_path, "toy_car_blocks.json")
 
 os.makedirs(export_path, exist_ok=True)

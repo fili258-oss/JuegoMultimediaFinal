@@ -29,7 +29,7 @@ export default class Resources extends EventEmitter
     {
         for (const source of this.sources)
         {
-            console.log(`⏳ Cargando recurso: ${source.name} desde ${source.path}`);
+            //console.log(`⏳ Cargando recurso: ${source.name} desde ${source.path}`);
     
             if (source.type === 'gltfModel')
             {
