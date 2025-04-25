@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const modelsPath = path.join('D:/UCC/React/PortafolioUCC/Project/game-project/public/models/toycar');
+const modelsPath = path.join('C:/Users/labinf1.pasto/Documents/Multimedia/JuegoFinal/game-project/public/models/toycar');
 const outputPath = path.join(__dirname, '../data/sources_1.js');
 
 if (!fs.existsSync(modelsPath)) {
