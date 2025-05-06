@@ -9,10 +9,11 @@ exports.getBlocks = async (req, res) => {
 
 // Agregar un nuevo bloque
 exports.addBlock = async (req, res) => {
-    const { x, y, z } = req.body
-    const newBlock = new Block({ x, y, z })
-    await newBlock.save()
-    res.status(201).json({ message: 'Bloque guardado', block: newBlock })
+    const { name, x, y, z, level } = req.body;
+    const newBlock = new Block({ name, x, y, z, level });
+    await newBlock.save();
+
+    res.status(201).json({ message: 'Bloque guardado', block: newBlock });
 }
 
 // Cargar lote desde JSON (para inicialización desde Blender)
