@@ -3,8 +3,8 @@ const fs = require('fs')
 const path = require('path')
 
 // Ruta de entrada y salida
-const inputPath = path.join(__dirname, '../data/toy_car_blocks.json')
-const outputPath = path.join(__dirname, '../data/precisePhysicsModels.json');
+const inputPath = path.join(__dirname, '../data/toy_car_blocks2.json')
+const outputPath = path.join(__dirname, '../data/precisePhysicsModels1.json');
 
 // Leer archivo JSON original
 fs.readFile(inputPath, 'utf8', (err, data) => {
@@ -18,7 +18,7 @@ fs.readFile(inputPath, 'utf8', (err, data) => {
 
         // Filtrar nombres que inicien con 'track'
         const trackNames = blocks
-            .filter(block => block.name && block.name.startsWith('track'))
+            .filter(block => block.name && block.name.startsWith('rural'))
             .map(block => block.name)
 
         // Eliminar duplicados (por si acaso)

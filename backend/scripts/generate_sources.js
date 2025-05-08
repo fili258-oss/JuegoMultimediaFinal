@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const modelsPath = path.join('C:/Users/labinf1.pasto/Documents/Multimedia/JuegoFinal/game-project/public/models/toycar2');
+const modelsPath = path.join('C:/Users/Marino Botina/Documents/Primer semestre 2025/DesMultimedial/VideoJuegoFinal/JuegoMultimediaFinal/game-project/public/models/toycar2');
 const outputPath = path.join(__dirname, '../data/sources2.js');
 
 if (!fs.existsSync(modelsPath)) {

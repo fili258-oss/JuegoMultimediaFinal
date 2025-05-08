@@ -53,7 +53,7 @@ export default class ToyCarLoader {
                 //Esta parte es util para llamar al objeto con el nombre correcto
                 // console.log('Explorando jerarquía del modelo:', block.name)
                 model.traverse((child) => {
-                  //  console.log('Objeto:', child.name, '| Tipo:', child.type)
+                    //console.log('Objeto:', child.name, '| Tipo:', child.type, child.level)
                 })
 
 
