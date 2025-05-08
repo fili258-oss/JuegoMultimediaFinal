@@ -2,10 +2,16 @@ const Block = require('../models/Block')
 
 // Obtener bloques sin _id
 exports.getBlocks = async (req, res) => {
-    const blocks = await Block.find({}, { name: 1, x: 1, y: 1, z: 1, _id: 0 })
+    try {
+        const level = parseInt(req.query.level) || 1;
 
-    res.json(blocks)
-}
+        const blocks = await Block.find({ level: level }).select('name x y z level -_id'); // 👈 selección limpia
+
+        res.json(blocks);
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener bloques', error });
+    }
+};
 
 // Agregar un nuevo bloque
 exports.addBlock = async (req, res) => {
