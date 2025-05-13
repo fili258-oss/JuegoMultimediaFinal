@@ -5,9 +5,9 @@ const blockSchema = new mongoose.Schema({
     x: { type: Number },
     y: { type: Number },
     z: { type: Number },
-    level: { type: Number, required: true, default: 1 }
+    level: { type: Number, required: true, default: 1 },
+    role: { type: String, enum: ['finalPrize', 'default'], default: 'default' } 
 });
-
 
 
 module.exports = mongoose.model('Block', blockSchema)

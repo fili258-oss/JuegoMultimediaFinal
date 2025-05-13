@@ -107,6 +107,16 @@ export default [
         "path": "/models/toycar/coin_structure_diagonal_lev1.glb"
     },
     {
+        "name": "coin_structure_detailed_lev2",
+        "type": "gltfModel",
+        "path": "/models/toycar/coin_structure_detailed_lev1.glb"
+    },
+    {
+        "name": "coin_structure_diagonal_lev2",
+        "type": "gltfModel",
+        "path": "/models/toycar/coin_structure_diagonal_lev1.glb"
+    },
+    {
         "name": "cylinder.001_lev1",
         "type": "gltfModel",
         "path": "/models/toycar/cylinder.001_lev1.glb"

@@ -20,7 +20,7 @@ export default class BlockPrefab {
         this.instances = [] // Guardamos las instancias para actualizar sus físicas
     }
 
-    getInstance(position = { x: 0, y: 0, z: 0 }) {
+    getInstance(position = { x: 0, y: 0, z: 0 }, log = false) {
         const clone = this.group.clone(true)
         clone.position.set(position.x, position.y, position.z)
         this.scene.add(clone)
@@ -37,6 +37,10 @@ export default class BlockPrefab {
 
         // Guardar la relación para sincronizar
         this.instances.push({ mesh: clone, body: body })
+        if (log) {
+            console.log(`📦 Bloque creado manualmente en: x=${position.x}, y=${position.y}, z=${position.z}`)
+        }
+
 
         return clone
     }

@@ -40,8 +40,13 @@ export default class Raycaster {
     }
 
     placeObject(position) {
-        this._createObstacle(position.x, 1, position.z)
-    }
+    // this._createObstacle(position.x, 1, position.z) // comentado para evitar crear obstáculos
+    
+    this.experience.world.blockPrefab.getInstance(
+        { x: position.x, y: 1, z: position.z },
+        true // activa el log para mostrar coordenadas
+    )
+}
 
     generateRandomObstacle() {
         const size = 0.5
