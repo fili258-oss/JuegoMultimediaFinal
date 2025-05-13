@@ -1,11 +1,12 @@
 const Block = require('../models/Block')
 
 // Obtener bloques sin _id
+
 exports.getBlocks = async (req, res) => {
     try {
         const level = parseInt(req.query.level) || 1;
 
-        const blocks = await Block.find({ level: level }).select('name x y z level -_id'); // 👈 selección limpia
+        const blocks = await Block.find({ level: level }).select('name x y z level role -_id'); 
 
         res.json(blocks);
     } catch (error) {
@@ -13,10 +14,12 @@ exports.getBlocks = async (req, res) => {
     }
 };
 
+
+
 // Agregar un nuevo bloque
 exports.addBlock = async (req, res) => {
-    const { name, x, y, z, level } = req.body;
-    const newBlock = new Block({ name, x, y, z, level });
+    const { name, x, y, z, level, rol } = req.body;
+    const newBlock = new Block({ name, x, y, z, level, role });
     await newBlock.save();
 
     res.status(201).json({ message: 'Bloque guardado', block: newBlock });

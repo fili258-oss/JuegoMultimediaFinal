@@ -1,9 +1,11 @@
 import * as THREE from 'three'
 
 export default class Prize {
-    constructor({ model, position, scene }) {
+    // En Prize.js
+    constructor({ model, position, scene, role = 'default' }) {
         this.scene = scene
         this.collected = false
+        this.role = role // 🟡 Guardar el rol
 
         // 📌 Crear el pivot (grupo contenedor)
         this.pivot = new THREE.Group()
@@ -27,11 +29,14 @@ export default class Prize {
         const helper = new THREE.AxesHelper(0.5)
         this.pivot.add(helper)
 
+        // 👻 Mostrar u ocultar según el rol
+        this.pivot.visible = role !== 'finalPrize'
+
         // ➕ Agregar el pivot (no el modelo) a la escena
         this.scene.add(this.pivot)
 
         // 🪪 Debug
-        console.log(`🎯 Premio en: (${position.x}, ${position.y}, ${position.z})`)
+        console.log(`🎯 Premio en: (${position.x}, ${position.y}, ${position.z}) [role: ${this.role}]`)
     }
 
     update(delta) {
