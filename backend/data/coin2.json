@@ -8,10 +8,35 @@
         "role": "default"
     },
     {
+        "name": "coin_structure_detailed_lev1",
+        "x": -8.425769827125471,
+        "y": 1,
+        "z": 1.2575127819814043,
+        "level": 2,
+        "role": "default"
+    },
+    {
+        "name": "coin_structure_detailed_lev1",
+        "x": -79.45868504464487,
+        "y": 1,
+        "z": 17.387530405737138,
+        "level": 2,
+        "role": "default"
+    },
+
+    {
+        "name": "coin_structure_detailed_lev1",
+        "x": 50.192645418566755,
+        "y": 1,
+        "z": -24.06083928217665,
+        "level": 2,
+        "role": "default"
+    },
+    {
         "name": "coin_structure_diagonal_lev1",
-        "x": -18.190834045410156,
-        "y": 0.9208789467811584,
-        "z": -2.064208745956421,
+        "x": 66.74917691507498,
+        "y": 1,
+        "z": 28.957264695511043,
         "level": 2,
         "role": "finalPrize"
     }
