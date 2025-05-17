@@ -14,7 +14,7 @@ export default class LevelManager {
 
             // ⏳ Espera breve para que el nivel se cargue y luego reubicar al robot
             setTimeout(() => {
-                this.experience.world.resetRobotPosition({ x: 5, y: 1.5, z: 5 }) // 🔁 Ajusta esta coordenada según el mundo nuevo
+                this.experience.world.resetRobotPosition({ x:-18.724085994514468, y:1, z:-19.822559536237396 }) // 🔁 Ajusta esta coordenada según el mundo nuevo
             }, 1000)
         }
     }

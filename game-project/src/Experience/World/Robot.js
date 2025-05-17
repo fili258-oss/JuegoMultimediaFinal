@@ -21,7 +21,7 @@ export default class Robot {
 
     setModel() {
         this.model = this.resources.items.robotModel.scene
-        this.model.scale.set(0.3, 0.3, 0.3)
+        this.model.scale.set(0.9, 0.9, 0.9)
         this.model.position.set(0, -0.1, 0) // Centrar respecto al cuerpo físico
 
         this.group = new THREE.Group()
@@ -55,11 +55,11 @@ export default class Robot {
         this.body.angularVelocity.setZero()
         this.body.sleep()
         this.body.material = this.physics.robotMaterial
-        //console.log('🚀 Robot material:', this.body.material.name)
+        console.log('🚀 Robot material:', this.body.material.name)
 
 
         this.physics.world.addBody(this.body)
-        //console.log('🤖 Posición inicial del robot:', this.body.position)
+        console.log('🤖 Posición inicial del robot:', this.body.position)
         // Activar cuerpo después de que el mundo haya dado al menos un paso de simulación
         setTimeout(() => {
             this.body.wakeUp()
@@ -98,7 +98,7 @@ export default class Robot {
 
             newAction.reset()
             newAction.play()
-            newAction.crossFadeFrom(oldAction, 0.3)
+            newAction.crossFadeFrom(oldAction, 0.1)
             this.animation.actions.current = newAction
 
             if (name === 'walking') {
