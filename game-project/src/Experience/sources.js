@@ -1202,11 +1202,6 @@ export default [
         "path": "/models/toycar/m_palm_p2_23_break_0.001_lev2.glb"
     },
     {
-        "name": "m_palm_p2_23_break_0_lev2",
-        "type": "gltfModel",
-        "path": "/models/toycar/m_palm_p2_23_break_0_lev2.glb"
-    },
-    {
         "name": "m_palm_p2_23_leaf_0.001_lev2",
         "type": "gltfModel",
         "path": "/models/toycar/m_palm_p2_23_leaf_0.001_lev2.glb"
@@ -1462,16 +1457,6 @@ export default [
         "path": "/models/toycar/m_palm_p2_9_trunk_0_lev2.glb"
     },
     {
-        "name": "object_112.001_lev2",
-        "type": "gltfModel",
-        "path": "/models/toycar/object_112.001_lev2.glb"
-    },
-    {
-        "name": "object_112.002_lev2",
-        "type": "gltfModel",
-        "path": "/models/toycar/object_112.002_lev2.glb"
-    },
-    {
         "name": "palm_2_lit_0.001_lev2",
         "type": "gltfModel",
         "path": "/models/toycar/palm_2_lit_0.001_lev2.glb"
@@ -1480,11 +1465,6 @@ export default [
         "name": "palm_2_lit_0_lev2",
         "type": "gltfModel",
         "path": "/models/toycar/palm_2_lit_0_lev2.glb"
-    },
-    {
-        "name": "plane.010_lev2",
-        "type": "gltfModel",
-        "path": "/models/toycar/plane.010_lev2.glb"
     },
     {
         "name": "rural_diner_1_rural_facade_flr_2_0_lev2",
