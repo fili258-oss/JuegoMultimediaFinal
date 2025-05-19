@@ -87,8 +87,8 @@ export default class World {
 
         const pos = this.robot.body.position
         const speed = this.robot.body.velocity.length()
-        const moved = speed > 0.5
-
+        const moved = speed > 0.5   
+        const finalCoin = this.loader.prizes.find(p => p.role === "finalPrize")     
         this.loader.prizes.forEach((prize, idx) => {
             if (!prize.pivot) return
 
@@ -103,23 +103,20 @@ export default class World {
                 if (prize.role === "default") {
                     this.points = (this.points || 0) + 1
                     this.robot.points = this.points
-
+                    
                     const pointsTarget = this.levelManager.getCurrentLevelTargetPoints()
                     console.log(`🎯 Monedas recolectadas: ${this.points} / ${pointsTarget}`)
 
-                    if (!this.finalPrizeActivated && this.points === this.totalDefaultCoins) {
-                        const finalCoin = this.loader.prizes.find(p => p.role === "finalPrize")
-                        if (finalCoin && !finalCoin.collected) {
+                    if (!this.finalPrizeActivated && this.points === pointsTarget) {
+                        console.log("👏 Coin final activado. Buscando el premio final...")                                                
+                        console.log("😎 Coin final encontrado:", finalCoin)
+                        if (finalCoin && !finalCoin.collected  && finalCoin.pivot) {
+                            if (finalCoin.model) finalCoin.model.visible = true
                             finalCoin.pivot.visible = true
                             this.finalPrizeActivated = true
-
-                            new FinalPrizeParticles({
-                                scene: this.scene,
-                                targetPosition: finalCoin.pivot.position,
-                                sourcePosition: this.robot.body.position,
-                                experience: this.experience
-                            })
-
+                            
+                            //Espacio para activar el faro o luces en el premio final
+                            this.showLights(finalCoin)
                             if (window.userInteracted) {
                                 this.portalSound.play()
                             }
@@ -129,7 +126,9 @@ export default class World {
                     }
                 }
 
-                if (prize.role === "finalPrize") {
+                const pointsTarget = this.levelManager.getCurrentLevelTargetPoints()
+                if (prize.role === "finalPrize") {                            
+                    this.showParticles(finalCoin)            
                     console.log("🚪 Coin final recogido. Pasando al siguiente nivel...")
                     if (this.levelManager.currentLevel < this.levelManager.totalLevels) {
                         this.levelManager.nextLevel()
@@ -150,8 +149,7 @@ export default class World {
                     }
                     return
                 }
-
-                const pointsTarget = this.levelManager.getCurrentLevelTargetPoints()
+                
                 console.log(`🎯 Monedas recolectadas: ${this.points} / ${pointsTarget}`)
 
                 if (this.experience.raycaster?.removeRandomObstacles) {
@@ -165,6 +163,11 @@ export default class World {
                 this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`)
             }
         })
+
+        // Faro rotación
+        if (this.discoRaysGroup) {
+            this.discoRaysGroup.rotation.y += delta * 0.5
+        }
     }
 
     async loadLevel(level) {
@@ -182,7 +185,7 @@ export default class World {
             this.robot.points = 0;
             this.totalDefaultCoins = undefined;
             this.finalPrizeActivated = false;
-            this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`);
+            this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`);            
 
             await this.loader.loadFromURL(apiUrl);
 
@@ -299,6 +302,15 @@ export default class World {
                 p.collected = false;
             }
         })
+
+        if (this.discoRaysGroup) {
+            this.discoRaysGroup.children.forEach(obj => {
+                if (obj.geometry) obj.geometry.dispose();
+                if (obj.material) obj.material.dispose();
+            });
+            this.scene.remove(this.discoRaysGroup);
+            this.discoRaysGroup = null;
+        }
     }
 
     resetRobotPosition(spawn = { x: 5, y: 1.5, z: 5 }) {
@@ -311,5 +323,57 @@ export default class World {
 
         this.robot.group.position.set(spawn.x, spawn.y, spawn.z)
         this.robot.group.rotation.set(0, 0, 0)
+    }
+    showParticles(finalCoin) {
+        console.log("🎉 Activando partículas para el premio final...")
+        new FinalPrizeParticles({
+            scene: this.scene,
+            targetPosition: finalCoin.pivot.position,
+            sourcePosition: this.robot.body.position,
+            experience: this.experience
+        })
+    }
+
+    showLights(finalCoin)
+    {
+        console.log("🎉 Activando luces para el premio final...")
+        // Faro visual
+        this.discoRaysGroup = new THREE.Group()
+        this.scene.add(this.discoRaysGroup)
+
+        const rayMaterial = new THREE.MeshBasicMaterial({
+            color: 0xaa00ff,
+            transparent: true,
+            opacity: 0.25,
+            side: THREE.DoubleSide
+        })
+
+        const rayCount = 4
+        for (let i = 0; i < rayCount; i++) {
+            const cone = new THREE.ConeGeometry(0.2, 4, 6, 1, true)
+            const ray = new THREE.Mesh(cone, rayMaterial)
+
+            ray.position.set(0, 2, 0)
+            ray.rotation.x = Math.PI / 2
+            ray.rotation.z = (i * Math.PI * 2) / rayCount
+
+            const spot = new THREE.SpotLight(0xaa00ff, 2, 12, Math.PI / 7, 0.2, 0.5)
+            spot.castShadow = false
+            spot.shadow.mapSize.set(1, 1)
+            spot.position.copy(ray.position)
+            spot.target.position.set(
+                Math.cos(ray.rotation.z) * 10,
+                2,
+                Math.sin(ray.rotation.z) * 10
+            )
+
+            ray.userData.spot = spot
+            this.discoRaysGroup.add(ray)
+            this.discoRaysGroup.add(spot)
+            this.discoRaysGroup.add(spot.target)
+        }
+
+        this.discoRaysGroup.position.copy(finalCoin.pivot.position)
+        
     }
 }
