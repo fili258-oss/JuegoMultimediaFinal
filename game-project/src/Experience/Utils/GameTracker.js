@@ -54,7 +54,7 @@ export default class GameTracker {
     }
 
     //Modal de fin de juego
-    showEndGameModal(currentTime) {
+    showEndGameModal(currentTime, totalPoints = 0) {
         const best = this.getBestTimes()
         const ranking = best.map((t, i) => `#${i + 1}: ${t}s`).join('\n')
 
@@ -65,7 +65,7 @@ export default class GameTracker {
 
         this.modal.show({
             icon: '🏁',
-            message: `¡Felicidades!\nTerminaste la partida.\n⏱ Tu tiempo: ${currentTime}s\n\n🏆 Mejores tiempos:\n${ranking}`,
+            message: `¡Felicidades!\nTerminaste la partida.\n⏱ Tu tiempo: ${currentTime}s\n\n🪙 Monedas totales: ${totalPoints}\n\n🏆 Mejores tiempos:\n${ranking}`,
             buttons: [
                 {
                     text: '🔁 Reintentar',

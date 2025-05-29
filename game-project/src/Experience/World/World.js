@@ -21,6 +21,7 @@ export default class World {
         this.resources = this.experience.resources
         this.levelManager = new LevelManager(this.experience);
         this.finalPrizeActivated = false
+        this.totalPoints = 0;
 
         // Sonidos
         this.coinSound = new Sound('/sounds/coin.ogg')
@@ -87,9 +88,8 @@ export default class World {
 
         const pos = this.robot.body.position
         const speed = this.robot.body.velocity.length()
-        const moved = speed > 0.5   
+        const moved = speed > 0.5
         const finalCoin = this.loader.prizes.find(p => p.role === "finalPrize")
-        //console.log("Nivel actualll", );     
         this.loader.prizes.forEach((prize, idx) => {
             if (!prize.pivot) return
 
@@ -104,18 +104,18 @@ export default class World {
                 if (prize.role === "default") {
                     this.points = (this.points || 0) + 1
                     this.robot.points = this.points
-                    
+
                     const pointsTarget = this.levelManager.getCurrentLevelTargetPoints()
                     console.log(`🎯 Monedas recolectadas: ${this.points} / ${pointsTarget}`)
 
                     if (!this.finalPrizeActivated && this.points === pointsTarget) {
-                        console.log("👏 Coin final activado. Buscando el premio final...")                                                
+                        console.log("👏 Coin final activado. Buscando el premio final...")
                         console.log("😎 Coin final encontrado:", finalCoin)
-                        if (finalCoin && !finalCoin.collected  && finalCoin.pivot) {
+                        if (finalCoin && !finalCoin.collected && finalCoin.pivot) {
                             if (finalCoin.model) finalCoin.model.visible = true
                             finalCoin.pivot.visible = true
                             this.finalPrizeActivated = true
-                            
+
                             //Espacio para activar el faro o luces en el premio final
                             this.showLights(finalCoin)
                             if (window.userInteracted) {
@@ -128,9 +128,10 @@ export default class World {
                 }
 
                 const pointsTarget = this.levelManager.getCurrentLevelTargetPoints()
-                
-                if (prize.role === "finalPrize") {                            
-                    this.showParticles(finalCoin)            
+                if (prize.role === "finalPrize") {
+                    this.showParticles(finalCoin)
+                    // Sumar puntos del nivel al total antes de reiniciar
+                    this.totalPoints += this.points || 0;
                     console.log("🚪 Coin final recogido. Pasando al siguiente nivel...")
                     if (this.levelManager.currentLevel < this.levelManager.totalLevels) {
                         
@@ -142,7 +143,8 @@ export default class World {
                         console.log('🏁 Completaste el último nivel, terminando partida...')
                         const elapsed = this.experience.tracker.stop()
                         this.experience.tracker.saveTime(elapsed)
-                        this.experience.tracker.showEndGameModal(elapsed)
+                        //se agrego  this.totalPoints para la suma total de puntos
+                        this.experience.tracker.showEndGameModal(elapsed,  this.totalPoints)
 
                         this.experience.obstacleWavesDisabled = true
                         clearTimeout(this.experience.obstacleWaveTimeout)
@@ -153,7 +155,7 @@ export default class World {
                     }
                     return
                 }
-                
+
                 console.log(`🎯 Monedas recolectadas: ${this.points} / ${pointsTarget}`)
 
                 if (this.experience.raycaster?.removeRandomObstacles) {
@@ -164,9 +166,8 @@ export default class World {
                 if (window.userInteracted) {
                     this.coinSound.play()
                 }
-                this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`)
-                //this.experience.menu.setLevelCount?.(`🏆 Nivel: ${this.levelManager.currentLevel}`);
-                
+
+                this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`) // (Total: ${this.totalPoints})
             }
         })
 
@@ -193,6 +194,7 @@ export default class World {
             this.finalPrizeActivated = false;
             this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`);          
             this.experience.menu.setLevelCount?.(level);          
+
 
             await this.loader.loadFromURL(apiUrl);
 
@@ -341,8 +343,7 @@ export default class World {
         })
     }
 
-    showLights(finalCoin)
-    {
+    showLights(finalCoin) {
         console.log("🎉 Activando luces para el premio final...")
         // Faro visual
         this.discoRaysGroup = new THREE.Group()
@@ -381,6 +382,6 @@ export default class World {
         }
 
         this.discoRaysGroup.position.copy(finalCoin.pivot.position)
-        
+
     }
 }
