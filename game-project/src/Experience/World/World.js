@@ -134,9 +134,11 @@ export default class World {
                     this.totalPoints += this.points || 0;
                     console.log("🚪 Coin final recogido. Pasando al siguiente nivel...")
                     if (this.levelManager.currentLevel < this.levelManager.totalLevels) {
+                        
                         this.levelManager.nextLevel()
-                        this.points = 0
-                        this.robot.points = 0
+                        this.experience.menu.setLevelCount?.(this.levelManager.currentLevel);
+                        //this.points = 0
+                        //this.robot.points = 0
                     } else {
                         console.log('🏁 Completaste el último nivel, terminando partida...')
                         const elapsed = this.experience.tracker.stop()
@@ -164,6 +166,7 @@ export default class World {
                 if (window.userInteracted) {
                     this.coinSound.play()
                 }
+
                 this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`) // (Total: ${this.totalPoints})
             }
         })
@@ -189,7 +192,9 @@ export default class World {
             this.robot.points = 0;
             this.totalDefaultCoins = undefined;
             this.finalPrizeActivated = false;
-            this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`);
+            this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`);          
+            this.experience.menu.setLevelCount?.(level);          
+
 
             await this.loader.loadFromURL(apiUrl);
 

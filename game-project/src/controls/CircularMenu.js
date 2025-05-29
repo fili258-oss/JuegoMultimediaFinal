@@ -116,7 +116,7 @@ export default class CircularMenu {
     // HUD: Puntos
     this.status = document.createElement('div')
     this.status.id = 'hud-points'
-    this.status.innerText = '🎖️ Puntos: 0'
+    this.status.innerText = '🎖️ Puntos: 0'    
     Object.assign(this.status.style, {
       position: 'fixed',
       top: '16px',
@@ -132,6 +132,26 @@ export default class CircularMenu {
       pointerEvents: 'none'
     })
     document.body.appendChild(this.status)
+
+    // HUD: Puntos
+    this.labelLevel = document.createElement('div')
+    this.labelLevel.id = 'hud-level'
+    this.labelLevel.innerText = '🏆 Nivel: 1'    
+    Object.assign(this.labelLevel.style, {
+      position: 'fixed',
+      top: '16px',
+      right: '170px',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      background: 'rgba(0,0,0,0.6)',
+      color: 'white',
+      padding: '6px 12px',
+      borderRadius: '8px',
+      zIndex: 9999,
+      fontFamily: 'monospace',
+      pointerEvents: 'none'
+    })
+    document.body.appendChild(this.labelLevel)
 
     // HUD: Jugadores
 
@@ -246,6 +266,13 @@ export default class CircularMenu {
   setPlayerCount(count) {
     if (this.playersLabel) {
       this.playersLabel.innerText = `👥 Jugadores: ${count}`
+    }
+  }
+
+  //Contador de niveles
+  setLevelCount(level) {
+    if (this.labelLevel) {
+      this.labelLevel.innerText = `🏆 Nivel: ${level}`
     }
   }
   
