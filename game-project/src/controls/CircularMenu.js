@@ -161,7 +161,7 @@ export default class CircularMenu {
     Object.assign(this.playersLabel.style, {
       position: 'fixed',
       top: '16px',
-      left: '140px',
+      left: '150px',
       fontSize: '16px',
       fontWeight: 'bold',
       background: 'rgba(0,0,0,0.6)',

@@ -47,6 +47,13 @@ const io = socketio(server, {
 let players = {}
 
 io.on('connection', (socket) => {
+    // Limitar a 5 jugadores
+    if (Object.keys(players).length >= 2) {
+        socket.emit('room-full', { message: 'La sala está llena. Intenta más tarde.' });
+        socket.disconnect();
+        return;
+    }
+//----
     console.log(`🟢 Usuario conectado: ${socket.id}`)
 
     socket.on('new-player', (data) => {
