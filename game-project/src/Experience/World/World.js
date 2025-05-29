@@ -88,7 +88,8 @@ export default class World {
         const pos = this.robot.body.position
         const speed = this.robot.body.velocity.length()
         const moved = speed > 0.5   
-        const finalCoin = this.loader.prizes.find(p => p.role === "finalPrize")     
+        const finalCoin = this.loader.prizes.find(p => p.role === "finalPrize")
+        //console.log("Nivel actualll", );     
         this.loader.prizes.forEach((prize, idx) => {
             if (!prize.pivot) return
 
@@ -127,13 +128,16 @@ export default class World {
                 }
 
                 const pointsTarget = this.levelManager.getCurrentLevelTargetPoints()
+                
                 if (prize.role === "finalPrize") {                            
                     this.showParticles(finalCoin)            
                     console.log("🚪 Coin final recogido. Pasando al siguiente nivel...")
                     if (this.levelManager.currentLevel < this.levelManager.totalLevels) {
+                        
                         this.levelManager.nextLevel()
-                        this.points = 0
-                        this.robot.points = 0
+                        this.experience.menu.setLevelCount?.(this.levelManager.currentLevel);
+                        //this.points = 0
+                        //this.robot.points = 0
                     } else {
                         console.log('🏁 Completaste el último nivel, terminando partida...')
                         const elapsed = this.experience.tracker.stop()
@@ -161,6 +165,8 @@ export default class World {
                     this.coinSound.play()
                 }
                 this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`)
+                //this.experience.menu.setLevelCount?.(`🏆 Nivel: ${this.levelManager.currentLevel}`);
+                
             }
         })
 
@@ -185,7 +191,8 @@ export default class World {
             this.robot.points = 0;
             this.totalDefaultCoins = undefined;
             this.finalPrizeActivated = false;
-            this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`);            
+            this.experience.menu.setStatus?.(`🎖️ Puntos: ${this.points}`);          
+            this.experience.menu.setLevelCount?.(level);          
 
             await this.loader.loadFromURL(apiUrl);
 
